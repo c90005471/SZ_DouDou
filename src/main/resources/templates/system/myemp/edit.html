@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-myemp-edit" th:object="${myemp}">
+            <input id="empno" name="empno" th:field="*{empno}"  type="hidden">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">员工姓名：</label>
+				<div class="col-sm-8">
+					<input id="ename" name="ename" th:field="*{ename}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">上级：</label>
+				<div class="col-sm-8">
+					<input id="mgr" name="mgr" th:field="*{mgr}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">岗位：</label>
+				<div class="col-sm-8">
+					<input id="job" name="job" th:field="*{job}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">工资：</label>
+				<div class="col-sm-8">
+					<input id="sal" name="sal" th:field="*{sal}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">奖金：</label>
+				<div class="col-sm-8">
+					<input id="comm" name="comm" th:field="*{comm}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">日志日期：</label>
+				<div class="col-sm-8">
+					<input id="hiredate" name="hiredate" th:field="*{hiredate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">部门编号：</label>
+				<div class="col-sm-8">
+					<input id="deptno" name="deptno" th:field="*{deptno}" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/myemp"
+		$("#form-myemp-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			}
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-myemp-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

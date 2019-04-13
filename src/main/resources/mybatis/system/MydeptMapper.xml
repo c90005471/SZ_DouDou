@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.mydept.mapper.MydeptMapper">
+    
+    <resultMap type="Mydept" id="MydeptResult">
+        <result property="deptno"    column="deptno"    />
+        <result property="dname"    column="dname"    />
+        <result property="loc"    column="loc"    />
+    </resultMap>
+	
+	<sql id="selectMydeptVo">
+        select deptno, dname, loc from mydept
+    </sql>
+	
+    <select id="selectMydeptList" parameterType="Mydept" resultMap="MydeptResult">
+        <include refid="selectMydeptVo"/>
+        <where>  
+            <if test="deptno != null "> and deptno = #{deptno}</if>
+             <if test="dname != null  and dname != '' "> and dname = #{dname}</if>
+             <if test="loc != null  and loc != '' "> and loc = #{loc}</if>
+         </where>
+    </select>
+    
+    <select id="selectMydeptById" parameterType="Integer" resultMap="MydeptResult">
+        <include refid="selectMydeptVo"/>
+        where deptno = #{deptno}
+    </select>
+        
+    <insert id="insertMydept" parameterType="Mydept">
+        insert into mydept
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="deptno != null  ">deptno,</if>
+			<if test="dname != null  and dname != ''  ">dname,</if>
+			<if test="loc != null  and loc != ''  ">loc,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="deptno != null  ">#{deptno},</if>
+			<if test="dname != null  and dname != ''  ">#{dname},</if>
+			<if test="loc != null  and loc != ''  ">#{loc},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateMydept" parameterType="Mydept">
+        update mydept
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="dname != null  and dname != ''  ">dname = #{dname},</if>
+            <if test="loc != null  and loc != ''  ">loc = #{loc},</if>
+        </trim>
+        where deptno = #{deptno}
+    </update>
+
+	<delete id="deleteMydeptById" parameterType="Integer">
+        delete from mydept where deptno = #{deptno}
+    </delete>
+	
+    <delete id="deleteMydeptByIds" parameterType="String">
+        delete from mydept where deptno in 
+        <foreach item="deptno" collection="array" open="(" separator="," close=")">
+            #{deptno}
+        </foreach>
+    </delete>
+    
+</mapper>

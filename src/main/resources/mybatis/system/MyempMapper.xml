@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.system.myemp.mapper.MyempMapper">
+    
+    <resultMap type="Myemp" id="MyempResult">
+        <result property="empno"    column="empno"    />
+        <result property="ename"    column="ename"    />
+        <result property="mgr"    column="mgr"    />
+        <result property="job"    column="job"    />
+        <result property="sal"    column="sal"    />
+        <result property="comm"    column="comm"    />
+        <result property="hiredate"    column="hiredate"    />
+        <result property="deptno"    column="deptno"    />
+    </resultMap>
+	
+	<sql id="selectMyempVo">
+        select empno, ename, mgr, job, sal, comm, hiredate, deptno from myemp
+    </sql>
+	
+    <select id="selectMyempList" parameterType="Myemp" resultMap="MyempResult">
+        <include refid="selectMyempVo"/>
+        <where>  
+            <if test="empno != null "> and empno = #{empno}</if>
+             <if test="ename != null  and ename != '' "> and ename = #{ename}</if>
+             <if test="mgr != null "> and mgr = #{mgr}</if>
+             <if test="job != null  and job != '' "> and job = #{job}</if>
+             <if test="sal != null "> and sal = #{sal}</if>
+             <if test="comm != null "> and comm = #{comm}</if>
+             <if test="hiredate != null "> and hiredate = #{hiredate}</if>
+             <if test="deptno != null "> and deptno = #{deptno}</if>
+         </where>
+    </select>
+    
+    <select id="selectMyempById" parameterType="Integer" resultMap="MyempResult">
+        <include refid="selectMyempVo"/>
+        where empno = #{empno}
+    </select>
+        
+    <insert id="insertMyemp" parameterType="Myemp">
+        insert into myemp
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="empno != null  ">empno,</if>
+			<if test="ename != null  and ename != ''  ">ename,</if>
+			<if test="mgr != null  ">mgr,</if>
+			<if test="job != null  and job != ''  ">job,</if>
+			<if test="sal != null  ">sal,</if>
+			<if test="comm != null  ">comm,</if>
+			<if test="hiredate != null  ">hiredate,</if>
+			<if test="deptno != null  ">deptno,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="empno != null  ">#{empno},</if>
+			<if test="ename != null  and ename != ''  ">#{ename},</if>
+			<if test="mgr != null  ">#{mgr},</if>
+			<if test="job != null  and job != ''  ">#{job},</if>
+			<if test="sal != null  ">#{sal},</if>
+			<if test="comm != null  ">#{comm},</if>
+			<if test="hiredate != null  ">#{hiredate},</if>
+			<if test="deptno != null  ">#{deptno},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateMyemp" parameterType="Myemp">
+        update myemp
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="ename != null  and ename != ''  ">ename = #{ename},</if>
+            <if test="mgr != null  ">mgr = #{mgr},</if>
+            <if test="job != null  and job != ''  ">job = #{job},</if>
+            <if test="sal != null  ">sal = #{sal},</if>
+            <if test="comm != null  ">comm = #{comm},</if>
+            <if test="hiredate != null  ">hiredate = #{hiredate},</if>
+            <if test="deptno != null  ">deptno = #{deptno},</if>
+        </trim>
+        where empno = #{empno}
+    </update>
+
+	<delete id="deleteMyempById" parameterType="Integer">
+        delete from myemp where empno = #{empno}
+    </delete>
+	
+    <delete id="deleteMyempByIds" parameterType="String">
+        delete from myemp where empno in 
+        <foreach item="empno" collection="array" open="(" separator="," close=")">
+            #{empno}
+        </foreach>
+    </delete>
+    
+</mapper>
