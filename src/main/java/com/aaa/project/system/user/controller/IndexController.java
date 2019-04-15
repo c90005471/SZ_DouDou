@@ -23,7 +23,7 @@ public class IndexController extends BaseController
     private IMenuService menuService;
 
     @Autowired
-    private DouDouConfig ruoYiConfig;
+    private DouDouConfig douDouConfig;
 
     // 系统首页
     @GetMapping("/index")
@@ -35,7 +35,7 @@ public class IndexController extends BaseController
         List<Menu> menus = menuService.selectMenusByUser(user);
         mmap.put("menus", menus);
         mmap.put("user", user);
-        mmap.put("copyrightYear", ruoYiConfig.getCopyrightYear());
+        mmap.put("copyrightYear", douDouConfig.getCopyrightYear());
         return "index";
     }
 
@@ -43,7 +43,7 @@ public class IndexController extends BaseController
     @GetMapping("/system/main")
     public String main(ModelMap mmap)
     {
-        mmap.put("version", ruoYiConfig.getVersion());
+        mmap.put("version", douDouConfig.getVersion());
         return "main";
     }
 }

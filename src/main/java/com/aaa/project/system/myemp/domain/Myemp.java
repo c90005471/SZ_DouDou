@@ -1,6 +1,5 @@
 package com.aaa.project.system.myemp.domain;
 
-import com.aaa.framework.aspectj.lang.annotation.Excel;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.aaa.framework.web.domain.BaseEntity;
@@ -9,21 +8,18 @@ import java.util.Date;
 /**
  * 测试员工表 myemp
  * 
- * @author teacherChen
- * @date 2019-04-12
+ * @author aaa
+ * @date 2019-04-15
  */
 public class Myemp extends BaseEntity
 {
 	private static final long serialVersionUID = 1L;
 	
 	/** 员工编号 */
-	@Excel(name="员工编号")
 	private Integer empno;
 	/** 员工姓名 */
-	@Excel(name="员工姓名")
 	private String ename;
 	/** 上级 */
-	@Excel(name="上级")
 	private Integer mgr;
 	/** 岗位 */
 	private String job;

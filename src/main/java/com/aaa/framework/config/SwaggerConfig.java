@@ -23,7 +23,7 @@ public class SwaggerConfig
 {
     /** 系统基础配置 */
     @Autowired
-    private DouDouConfig ruoYiConfig;
+    private DouDouConfig douDouConfig;
 
     /**
      * 创建API
@@ -51,8 +51,8 @@ public class SwaggerConfig
         return new ApiInfoBuilder()
                 .title("标题：豆豆管理系统_接口文档")
                 .description("描述：用于管理集团旗下公司的人员信息,具体包括XXX,XXX模块...")
-                .contact(new Contact(ruoYiConfig.getName(), null, null))
-                .version("版本号:" + ruoYiConfig.getVersion())
+                .contact(new Contact(douDouConfig.getName(), null, null))
+                .version("版本号:" + douDouConfig.getVersion())
                 .build();
     }
 }
