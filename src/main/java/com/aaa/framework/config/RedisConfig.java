@@ -20,9 +20,9 @@ import java.util.Set;
  * redis相关配置
  * @Version 1.0
  */
-@Configuration
-@PropertySource("classpath:redis.properties")
-@ConfigurationProperties(prefix = "redis")
+//@Configuration
+//@PropertySource("classpath:redis.properties")
+//@ConfigurationProperties(prefix = "redis")
 public class RedisConfig {
     private int maxIdle;
     private int maxTotal;
