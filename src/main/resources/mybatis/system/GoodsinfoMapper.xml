@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aaa.project.system.goodsinfo.mapper.GoodsinfoMapper">
+    
+    <resultMap type="Goodsinfo" id="GoodsinfoResult">
+        <result property="goodsId"    column="goods_id"    />
+        <result property="goodsName"    column="goods_name"    />
+        <result property="goodsType"    column="goods_type"    />
+        <result property="goodsSpec"    column="goods_spec"    />
+        <result property="goodsPrice"    column="goods_price"    />
+        <result property="goodsDate"    column="goods_date"    />
+    </resultMap>
+	
+	<sql id="selectGoodsinfoVo">
+        select goods_id, goods_name, goods_type, goods_spec, goods_price, goods_date from goodsinfo
+    </sql>
+	
+    <select id="selectGoodsinfoList" parameterType="Goodsinfo" resultMap="GoodsinfoResult">
+        <include refid="selectGoodsinfoVo"/>
+        <where>  
+            <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+             <if test="goodsName != null  and goodsName != '' "> and goods_name = #{goodsName}</if>
+             <if test="goodsType != null "> and goods_type = #{goodsType}</if>
+             <if test="goodsSpec != null  and goodsSpec != '' "> and goods_spec = #{goodsSpec}</if>
+             <if test="goodsPrice != null "> and goods_price = #{goodsPrice}</if>
+             <if test="goodsDate != null "> and goods_date = #{goodsDate}</if>
+         </where>
+    </select>
+    
+    <select id="selectGoodsinfoById" parameterType="Integer" resultMap="GoodsinfoResult">
+        <include refid="selectGoodsinfoVo"/>
+        where goods_id = #{goodsId}
+    </select>
+        
+    <insert id="insertGoodsinfo" parameterType="Goodsinfo">
+        insert into goodsinfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null  ">goods_id,</if>
+			<if test="goodsName != null  and goodsName != ''  ">goods_name,</if>
+			<if test="goodsType != null  ">goods_type,</if>
+			<if test="goodsSpec != null  and goodsSpec != ''  ">goods_spec,</if>
+			<if test="goodsPrice != null  ">goods_price,</if>
+			<if test="goodsDate != null  ">goods_date,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null  ">#{goodsId},</if>
+			<if test="goodsName != null  and goodsName != ''  ">#{goodsName},</if>
+			<if test="goodsType != null  ">#{goodsType},</if>
+			<if test="goodsSpec != null  and goodsSpec != ''  ">#{goodsSpec},</if>
+			<if test="goodsPrice != null  ">#{goodsPrice},</if>
+			<if test="goodsDate != null  ">#{goodsDate},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateGoodsinfo" parameterType="Goodsinfo">
+        update goodsinfo
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="goodsName != null  and goodsName != ''  ">goods_name = #{goodsName},</if>
+            <if test="goodsType != null  ">goods_type = #{goodsType},</if>
+            <if test="goodsSpec != null  and goodsSpec != ''  ">goods_spec = #{goodsSpec},</if>
+            <if test="goodsPrice != null  ">goods_price = #{goodsPrice},</if>
+            <if test="goodsDate != null  ">goods_date = #{goodsDate},</if>
+        </trim>
+        where goods_id = #{goodsId}
+    </update>
+
+	<delete id="deleteGoodsinfoById" parameterType="Integer">
+        delete from goodsinfo where goods_id = #{goodsId}
+    </delete>
+	
+    <delete id="deleteGoodsinfoByIds" parameterType="String">
+        delete from goodsinfo where goods_id in 
+        <foreach item="goodsId" collection="array" open="(" separator="," close=")">
+            #{goodsId}
+        </foreach>
+    </delete>
+    
+</mapper>
