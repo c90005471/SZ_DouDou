@@ -36,7 +36,7 @@ public class SwaggerConfig
                 .apiInfo(apiInfo())
                 .select()
                 // 指定当前包路径
-                .apis(RequestHandlerSelectors.basePackage("com.aaa.project.tool.swagger"))
+                .apis(RequestHandlerSelectors.basePackage("com.aaa.project"))
                 // 扫描所有 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build();
@@ -50,8 +50,8 @@ public class SwaggerConfig
         // 用ApiInfoBuilder进行定制
         return new ApiInfoBuilder()
                 .title("标题：豆豆管理系统_接口文档")
-                .description("描述：用于管理集团旗下公司的人员信息,具体包括XXX,XXX模块...")
-                .contact(new Contact(douDouConfig.getName(), null, null))
+                .description("描述：用于管理公司的人员信息")
+                .contact(new Contact(douDouConfig.getName(), "http://www.zzaaa.net", null))
                 .version("版本号:" + douDouConfig.getVersion())
                 .build();
     }

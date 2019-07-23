@@ -20,6 +20,12 @@
     <script>
         if(window.top!==window.self){window.top.location=window.location};
     </script>
+    <style>
+        #loginForm{
+            position: relative;
+            right: -120px;
+        }
+    </style>
 </head>
 
 <body class="signin">
@@ -40,13 +46,13 @@
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Thymeleaf</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Bootstrap</li>
                     </ul>
-                    <strong>还没有账号？ <a href="#">立即注册&raquo;</a></strong>
+                    <!--<strong>还没有账号？ <a href="#">立即注册&raquo;</a></strong>-->
                 </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-5" id="loginForm">
                 <form id="signupForm">
                     <h4 class="no-margins">登录：</h4>
-                    <p class="m-t-md">你若不离不弃，我必生死相依</p>
+                    <p class="m-t-md"></p>
                     <input type="text"     name="username" class="form-control uname"     placeholder="用户名" value="admin"    />
                     <input type="password" name="password" class="form-control pword"     placeholder="密码"   value="admin123" />
 					<div class="row m-t" th:if="${captchaEnabled==true}">
@@ -69,7 +75,7 @@
         <div class="signup-footer">
             <div class="pull-left">
                 &copy; 2018 All Rights Reserved. DouDou <br>
-                <a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow">粤ICP备18046899号</a><br>
+                <a href="https://www.toutiao.com/c/user/59325412265/#mid=1589186466669581" target="_blank" rel="nofollow">关注我的头条</a><br>
             </div>
         </div>
     </div>

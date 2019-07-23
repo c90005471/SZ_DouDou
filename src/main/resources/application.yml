@@ -3,9 +3,9 @@ aaa:
   # 名称
   name: DouDou
   # 版本
-  version: 3.1.0
+  version: 1.1.0
   # 版权年份
-  copyrightYear: 2018
+  copyrightYear: 2019
   # 文件上传路径
   profile: D:/profile/
   # 获取ip地址开关
@@ -66,8 +66,6 @@ spring:
     restart:
       # 热部署开关
       enabled: true
-
-# MyBatis
 mybatis:
     # 搜索指定包别名
     typeAliasesPackage: com.aaa.project
@@ -75,6 +73,7 @@ mybatis:
     mapperLocations: classpath:mybatis/**/*Mapper.xml
     # 加载全局的配置文件
     configLocation: classpath:mybatis/mybatis-config.xml
+
 
 # PageHelper分页插件
 pagehelper: 
@@ -132,3 +131,4 @@ gen:
   autoRemovePre: true
   # 表前缀(类名不会包含表前缀)
   tablePrefix: sys_
+

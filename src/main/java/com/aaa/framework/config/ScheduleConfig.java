@@ -12,7 +12,7 @@ import java.util.Properties;
  * @author teacherChen
  *
  */
-@Configuration
+//@Configuration
 public class ScheduleConfig
 {
     @Bean
