@@ -14,7 +14,7 @@
 			<div class="form-group">	
 				<label class="col-sm-3 control-label">商品种类：</label>
 				<div class="col-sm-8">
-					<select id="goodsType" name="goodsType" class="form-control" multiple="">
+					<select id="goodsType" name="goodsType" class="form-control">
 						<option th:each="goodsType:${goodsTypes}" th:value="${goodsType.typeId}" th:text="${goodsType.typeName}"></option>
 					</select>
 
